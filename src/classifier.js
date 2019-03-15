@@ -6,18 +6,20 @@
  const input = require("./inputs/input.js");
  var moment = require('moment');
  moment().format();
+ //moment was used for time formatting
 
 function classifier(input) {
   // Your code should go here.
   const array_with_age =reformat_array_to_contain_age(input);
+  //format the original array to contain age with dob
   const age_sorted_array = array_with_age.sort(age_sorter);
-//console.log(new_array);
-  //return new_array;
+
 
  const group_array = myownchunk(age_sorted_array);
- const outputEdge = group_object(group_array);
-  console.log(outputEdge);
-  return outputEdge;
+ //here goes the chunk based on condition set
+ const output = group_object(group_array);
+  console.log(output);
+  return output;
 }
 
 module.exports = classifier;
@@ -175,7 +177,8 @@ function group_object(group_array){
       	let member = {}
       	member.name = student.name;
       	member.age = student.age;
-      	member.dob = student.dob;
+        member.dob = student.dob;
+        member.regNo = student.regNo;
         mygroups.members.push(member);
         mygroups.regNos.push(student.regNo);
         addition = addition+ student.age;

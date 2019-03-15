@@ -1,7 +1,7 @@
 # Michael's Solution to Max.ng test
 Thank you for this code challenge
 
-##installation
+## Installation
 
 ```bash
 npm install

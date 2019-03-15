@@ -24,15 +24,14 @@ module.exports = classifier;
 
 
 
-
-
 function create_student(name, dob, regNo) {
   //recreate object of student from a given set of input
   const student = {};
   const age = get_age_from_date(dob);
   student.name = name,
   student.age = age,
-  student.regNo = regNo
+  student.regNo = regNo,
+  student.dob = dob
   return student;
   
 }
@@ -45,12 +44,12 @@ function reformat_array_to_contain_age(the_array){
     the_array.forEach(function (arrayItem) {
       // const x = arrayItem.prop1 + 2;
       // console.log(x);
-      const dob = arrayItem.dob;
-      const name = arrayItem.name;
-      const regNo = arrayItem.regNo;
-      const student = create_student(name, dob, regNo);
-      console.log(dob);
-      console.log(student);
+      let dob = arrayItem.dob;
+      let name = arrayItem.name;
+      let regNo = arrayItem.regNo;
+      let student = create_student(name, dob, regNo);
+      //console.log(dob);
+      //console.log(student);
       //let's push the new student to the array
       new_array.push(student);
   });
@@ -89,8 +88,8 @@ function age_sorter(a,b) {
 // const result = mikesample.sort(age_sorter);
  
 
-const result = reformat_array_to_contain_age(input);
-console.log(result);
+//const result = reformat_array_to_contain_age(input);
+//console.log(result);
 
 
 
@@ -104,9 +103,12 @@ console.log(result);
 function myownchunk(thearray){
   const chunked_array =[];
   let temparray = [];
-  let chunk =0;
-  let temparray_smallest_index_value= 0;
-  temparray_smallest_index_value = thearray[0].age;
+  //let chunk =0;
+  //let temparray_smallest_index_value= 0;
+  if(thearray.length >0){
+
+
+  let temparray_smallest_index_value = thearray[0].age;
   console.log(temparray_smallest_index_value);
   
   for(let i=0;i<thearray.length ; i++){
@@ -120,12 +122,23 @@ function myownchunk(thearray){
       //console.log(temparray_smallest_index_value);
       //console.log(thearray[i]);
       temparray.push(thearray[i]);
+      if(i == (thearray.length-1)){
+        chunked_array.push(temparray);
+      }
+
       //console.log(temparray);
       
     }
-    else if((temparray.length < 3) && ((temparray_smallest_index_value + 5) < thearray[i].age)){
+    else if((temparray.length < 4) && ((temparray_smallest_index_value + 5) < thearray[i].age)){
       chunked_array.push(temparray);
       temparray =[];
+      temparray.push(thearray[i]);
+      if(i == (thearray.length-1)){
+        chunked_array.push(temparray);
+      }
+    }
+    else{
+        console.log('check me');
     }
 
     // temparray = thearray.slice(i,i+chunk);
@@ -133,7 +146,9 @@ function myownchunk(thearray){
     // chunked_array.push(temparray);
 
   }
-  console.log(chunked_array)
+  }
+  //console.log(chunked_array)
+
   return chunked_array;
 }
 
@@ -157,7 +172,11 @@ function group_object(group_array){
       mygroups.regNos = [];
       console.log(mygroups);
       item.map(function(student, i){
-        mygroups.members.push(student.name);
+      	let member = {}
+      	member.name = student.name;
+      	member.age = student.age;
+      	member.dob = student.dob;
+        mygroups.members.push(member);
         mygroups.regNos.push(student.regNo);
         addition = addition+ student.age;
 
@@ -167,4 +186,3 @@ function group_object(group_array){
   });
   return output;
 }
-

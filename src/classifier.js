@@ -24,8 +24,6 @@ function classifier(input) {
 
 module.exports = classifier;
 
-
-
 function create_student(name, dob, regNo) {
   //recreate object of student from a given set of input
   const student = {};
@@ -37,8 +35,6 @@ function create_student(name, dob, regNo) {
   return student;
   
 }
-
-
 
 
 function reformat_array_to_contain_age(the_array){
@@ -60,12 +56,6 @@ function reformat_array_to_contain_age(the_array){
 
 
 
-
-
-
-
-
-
 function get_age_from_date(thedate){
   const todays_date = new Date();
   const todays_date_moment = moment(todays_date);
@@ -73,9 +63,6 @@ function get_age_from_date(thedate){
   const age = todays_date_moment.diff(thedate_moment, 'years')
   return age;
 }
-
-//console.log(get_age(mydate));
-
 
 
 function age_sorter(a,b) {
@@ -87,22 +74,9 @@ function age_sorter(a,b) {
   return 0;
 }
 
-// const result = mikesample.sort(age_sorter);
- 
-
-//const result = reformat_array_to_contain_age(input);
-//console.log(result);
-
-
-
-
-//let's split the arrays in chunks
-
-
-
-
 
 function myownchunk(thearray){
+  //this function helps to chunk arrays based on the condition given in the question
   const chunked_array =[];
   let temparray = [];
   //let chunk =0;
@@ -114,21 +88,19 @@ function myownchunk(thearray){
   console.log(temparray_smallest_index_value);
   
   for(let i=0;i<thearray.length ; i++){
-  
+    //since the array was sorted already, we just use the first element as reference to guide the 5 difference
     console.log(thearray[i].age);
     if(temparray.length == 0 ){
        temparray_smallest_index_value = thearray[i].age;
     }
 
     if((temparray.length < 3) && ((temparray_smallest_index_value + 5) >= thearray[i].age)){
-      //console.log(temparray_smallest_index_value);
-      //console.log(thearray[i]);
+      
       temparray.push(thearray[i]);
       if(i == (thearray.length-1)){
         chunked_array.push(temparray);
       }
 
-      //console.log(temparray);
       
     }
     else if((temparray.length < 4) && ((temparray_smallest_index_value + 5) < thearray[i].age)){
@@ -143,13 +115,10 @@ function myownchunk(thearray){
         console.log('check me');
     }
 
-    // temparray = thearray.slice(i,i+chunk);
-    //   console.log(temparray);
-    // chunked_array.push(temparray);
 
   }
   }
-  //console.log(chunked_array)
+  
 
   return chunked_array;
 }
@@ -158,18 +127,16 @@ function myownchunk(thearray){
 function group_object(group_array){
   const output = {};
   output.noOfGroups = group_array.length;
-  //let groupnumber = 1;
+  
   group_array.map(function(item, i){
       let groupnum = i+1;
       let mygroups = output['group'+groupnum]= {} ;
       
-      //let eldest = Math.max(...item.age);
+      
       mygroups.oldest = item[item.length -1].age; 
       mygroups.members = [];
       //mygroups.sum = 0;
       let addition = 0;
-
-
 
       mygroups.regNos = [];
       console.log(mygroups);

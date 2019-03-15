@@ -5,11 +5,18 @@
  * @param {number[]} cleanPile The array of clean socks
  * @param {number[]} dirtyPile The array of dirty socks to wash
  */
-const noOfWashes = require
+
 function getMaxPairs(noOfWashes, cleanPile, dirtyPile) {
   // Your solution should go here.
-  const totalsocks = 0;
-	const dirty_clean_match =0;
+//   const totalsocks = 0;
+//   const dirty_clean_match =0;
+//   const clean = cleanPile.sort();
+//   const dirty = dirtyPile.sort();
+//   const unique_clean = unique_with_occurence(cleanPile);
+//   const unique_dirty = unique_with_occurence(dirty);
+  //totalsocks = Math.floor(clean.length + dirty.length+ noOfWashes);
+  //return totalsocks;
+  
 	//first let check for total clean pairs available
 	//const 
 	//we'll check for duplicate in clean pile array

@@ -24,6 +24,7 @@ function classifier(input) {
 
 module.exports = classifier;
 
+
 function create_student(name, dob, regNo) {
   //recreate object of student from a given set of input
   const student = {};
@@ -57,10 +58,16 @@ function reformat_array_to_contain_age(the_array){
 
 
 function get_age_from_date(thedate){
-  const todays_date = new Date();
-  const todays_date_moment = moment(todays_date);
-  const thedate_moment = moment(thedate);
-  const age = todays_date_moment.diff(thedate_moment, 'years')
+  // const todays_date = new Date();
+  // const todays_date_moment = moment(todays_date);
+  // const thedate_moment = moment(thedate);
+  // const temp_age = todays_date_moment.diff(thedate_moment, 'years')
+  // const age = temp_age;
+  // return age;
+  const birth_date = new Date(thedate);
+  const current_date = new Date("2019-01-01");
+  const diff = current_date - birth_date;
+  const age = Math.ceil(diff / 31557600000)
   return age;
 }
 
@@ -77,7 +84,7 @@ function age_sorter(a,b) {
 
 function myownchunk(thearray){
   //this function helps to chunk arrays based on the condition given in the question
-  const chunked_array =[];
+  let chunked_array =[];
   let temparray = [];
   //let chunk =0;
   //let temparray_smallest_index_value= 0;
@@ -93,11 +100,18 @@ function myownchunk(thearray){
     if(temparray.length == 0 ){
        temparray_smallest_index_value = thearray[i].age;
     }
-
+    console.log(temparray_smallest_index_value + 5)
+    console.log("age"+ thearray[i].age)
     if((temparray.length < 3) && ((temparray_smallest_index_value + 5) >= thearray[i].age)){
       
       temparray.push(thearray[i]);
+      if(temparray.length == 3){
+        chunked_array.push(temparray);
+        temparray =[];
+
+      }
       if(i == (thearray.length-1)){
+        console.log('cond1')
         chunked_array.push(temparray);
       }
 
@@ -105,14 +119,22 @@ function myownchunk(thearray){
     }
     else if((temparray.length < 4) && ((temparray_smallest_index_value + 5) < thearray[i].age)){
       chunked_array.push(temparray);
+      console.log('cond2')
       temparray =[];
       temparray.push(thearray[i]);
+      temparray_smallest_index_value = temparray[0].age;
       if(i == (thearray.length-1)){
+        console.log('cond3')
+
         chunked_array.push(temparray);
       }
     }
     else{
         console.log('check me');
+        chunked_array.push(temparray);
+        temparray =[];
+        temparray.push(thearray[i]);
+
     }
 
 
@@ -138,21 +160,24 @@ function group_object(group_array){
       //mygroups.sum = 0;
       let addition = 0;
 
-      mygroups.regNos = [];
-      console.log(mygroups);
+      //mygroups.regNos = [];
+      my_regno = [];
+      //console.log(mygroups);
       item.map(function(student, i){
-      	let member = {}
-      	member.name = student.name;
-      	member.age = student.age;
+        let member = {}
+        member.name = student.name;
+        member.age = student.age;
         member.dob = student.dob;
         member.regNo = student.regNo;
         mygroups.members.push(member);
-        mygroups.regNos.push(student.regNo);
+        let regno_int = Number(student.regNo);
+        my_regno.push(regno_int);
         addition = addition+ student.age;
 
       })
       mygroups.sum = addition;
-      console.log(mygroups);
+      mygroups.regNos = my_regno.sort((a, b) => a - b);
+      //console.log(mygroups);
   });
   return output;
 }

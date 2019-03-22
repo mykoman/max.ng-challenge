@@ -1,11 +1,8 @@
-/**
- * This is the entry point to the program.
- *
- * @param {number} noOfWashes The number of times the laundry machine can clean a dirty sock
- * @param {number[]} cleanPile The array of clean socks
- * @param {number[]} dirtyPile The array of dirty socks to wash
- */
+//alert('hi');
 
+// let noOfWashes = 2;
+// let cleanPile = [1, 2, 1, 1,1,2,2,1];
+// let dirtyPile = [1, 4, 3, 2, 4];
 let single_clean = [];
 let cleanpairno = 0;
 let single_dirty = [];
@@ -19,7 +16,7 @@ let washdirtypile = false;
 let tempDirtyPile =[];
 let dirtywashed =0;
 
-//getMaxPairs(50,[40, 40, 40, 40, 40, 40, 40, 50, 50, 50, 50, 50], [40, 40, 45, 45, 30, 35, 50, 50, 25, 25, 20, 20]);
+getMaxPairs(50,[40, 40, 40, 40, 40, 40, 40, 50, 50, 50, 50, 50], [40, 40, 45, 45, 30, 35, 50, 50, 25, 25, 20, 20]);
 
 
 
@@ -51,7 +48,7 @@ function getMaxPairs(noOfWashes, cleanPile, dirtyPile) {
   
 }
 
-module.exports = getMaxPairs;
+//module.exports = getMaxPairs;
 
 
 
@@ -193,3 +190,12 @@ function dirtyToWash(noOfWashes){
     return Math.floor(possible_dirtywash/2);
   }
 }
+
+
+// let array1=[1,2];
+// let array2 = [1,2,2,3,4,4];
+// //let array3 = [];
+
+//  let array3 = array2.filter(val => !array1.includes(val));
+
+// console.log(array3);
